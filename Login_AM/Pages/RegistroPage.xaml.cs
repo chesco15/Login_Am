@@ -39,7 +39,7 @@ public partial class RegistroPage : ContentPage
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error: {ex.Message}");
+            Console.WriteLine($"Errores: {ex.Message}");
         }
     }
     private async Task<String> RegisterParametersAsync(UserRegister userParams, string uri)
