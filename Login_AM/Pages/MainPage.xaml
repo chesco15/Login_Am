@@ -7,10 +7,10 @@
     <!--BackgroundColor="{DynamicResource PageBackgroundColor}"-->
     <ContentPage.Content>
         <VerticalStackLayout>
-            <Label Text="Introduce tu email" Margin="5"/>
-            <Entry x:Name="txt_email" Placeholder="Introduce tu email" Margin="5"/>
-            <Label Text="Introduce tu contraseña" Margin="5" />
-            <cmp:RelativeLayout Margin="5">
+            <Label Text="Email" Margin="5,10,0,0" TextColor="Black"/>
+            <Entry x:Name="txt_email" Placeholder="Introduce tu email" Margin="5,0,0,0"/>
+            <Label Text="Contraseña" Margin="5,10,0,0" TextColor="Black" />
+            <cmp:RelativeLayout Margin="5,0,0,0">
                 <Entry x:Name="txt_pass"  Placeholder="Introduce tu contraseña"
                    cmp:RelativeLayout.XConstraint="{cmp:ConstraintExpression Type=RelativeToParent, Property=X, Constant=0}"
                    cmp:RelativeLayout.WidthConstraint="{cmp:ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.9}"
@@ -21,27 +21,14 @@
                    cmp:RelativeLayout.WidthConstraint="{cmp:ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.10}"
                    cmp:RelativeLayout.HeightConstraint="{cmp:ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.10}" />
             </cmp:RelativeLayout>
-            <HorizontalStackLayout>
-                <Button Text="Iniciar Sesión" Clicked="Loguearse"/>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Button MinimumWidthRequest="300" Text="Iniciar Sesión" Clicked="Loguearse" Margin="0,20,0,0"/>
             </HorizontalStackLayout>
-            <cmp:RelativeLayout Margin="15">
-                <Label cmp:RelativeLayout.XConstraint="{cmp:ConstraintExpression Type=RelativeToParent, Property=Width, Constant=-50}"
-                   cmp:RelativeLayout.WidthConstraint="{cmp:ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
-                   cmp:RelativeLayout.HeightConstraint="{cmp:ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.10}">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Crear una cuenta"
-                                  TextColor="Blue"
-                                  TextDecorations="Underline">
-                                <Span.GestureRecognizers>
-                                    <TapGestureRecognizer
-                           Tapped="TapGestureRecognizer_Tapped_1"/>
-                                </Span.GestureRecognizers>
-                            </Span>
-                        </FormattedString>
-                    </Label.FormattedText>
+            <Label Text="¿No tienes cuenta?" TextColor="Black" Margin="8,20,0,5">
                 </Label>
-            </cmp:RelativeLayout>
+                <HorizontalStackLayout>
+                    <Button Text="Registrarse" Clicked="Registro" Margin="8,0,0,0"/>
+                </HorizontalStackLayout>
         </VerticalStackLayout>
     </ContentPage.Content>
 </ContentPage>

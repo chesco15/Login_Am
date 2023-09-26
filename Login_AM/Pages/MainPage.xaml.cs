@@ -76,12 +76,7 @@ public partial class MainPage : ContentPage
         }
     }
 
-    private async void Registro()
-    {
-        await Navigation.PushAsync(new RegistroPage());
-    }
-
-    private async void TapGestureRecognizer_Tapped_1(object sender, TappedEventArgs e)
+    private async void Registro(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new RegistroPage());
     }
