@@ -1,0 +1,79 @@
+﻿@page "/"
+@using Login_AM.Models
+@using Login_AM.Data
+@using System.Text.Json;
+@using System.Net.Http.Headers;
+@using System.Net.Http.Json;
+<h3>Login</h3>
+<EditForm Model="@login_Model" OnValidSubmit="Submit">
+    <div class="form-group">
+        <label>Email</label>
+        <input type="email" @bind-value="login_Model.Email" class="form-control" placeholder="Introduce tu email" />
+    </div>
+    <div class="mt-2 form-group">
+        <label>Contraseña</label>
+        <input type="password" @bind-value="login_Model.Password" class="form-control" placeholder="Introduce tu contraseña" />
+    </div>
+    <div class="mt-2 text-end">
+        <NavLink class="nav-link" href="registro">
+        <span>Pulsa aqui para crear una cuenta</span>
+        </NavLink>
+    </div>
+    <div class="text-center mt-2">
+        <button class="btn btn-primary" type="submit">
+            <span class="@spinnerclass" role="status" aria-hidden="true"></span>
+            Iniciar Sesión</button>
+    </div>
+
+</EditForm>
+@code {
+    private readonly HttpClient _httpClient = new HttpClient();
+    Login_Model login_Model = new();
+
+    private string spinnerclass = "";
+    private async void Submit()
+    {
+        spinnerclass = "spinner-border spinner-border-sm";
+        await Task.Delay(500);
+        spinnerclass = "";
+        this.StateHasChanged();
+        await Login_User(login_Model.Email, login_Model.Password);
+    }
+
+    private async Task Login_User(string username, string password)
+    {
+        try
+        {
+            //ServicioCertificacion handler = new ServicioCertificacion();
+            //HttpClient client = new HttpClient(handler.GetPlatformMessageHandler());
+            //string BaseAddress = DeviceInfo.Platform == DevicePlatform.Android ? "https://10.0.2.2:7083" : "https://localhost:7083";
+            
+            string BaseAddress = "https://localhost:7083";
+            string todoUrl = $"{BaseAddress}/api/";
+            _httpClient.BaseAddress = new Uri(todoUrl);
+            var userParams = new User(username, password);
+            var result = await GetUserParametersAsync(userParams, todoUrl);
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+    private async Task<String> GetUserParametersAsync(User userParams,string uri)
+    {
+        //ServicioCertificacion handler = new ServicioCertificacion();
+        //HttpClient client = new HttpClient(handler.GetPlatformMessageHandler());
+        //var response = await client.PostAsJsonAsync(uri + "Auth/login", userParams);
+        var response = await _httpClient.PostAsJsonAsync("Auth/login", userParams);
+
+        if (response.IsSuccessStatusCode)
+        {
+            return await response.Content.ReadAsStringAsync();
+        }
+        else
+        {
+            throw new Exception($"Error al realizar la solicitud: {response.StatusCode}");
+        }
+    }
+}

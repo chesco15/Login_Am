@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Login_AM.Pages.RegistroPage"
+             Title="Registro">
+    <VerticalStackLayout>
+        <Label Text="Nombre" TextColor="Black"/>
+        <Editor x:Name="txt_nombre" Placeholder="Introduce tu nombre"/>
+        <Label Text="Primer Apellido" TextColor="Black"/>
+        <Editor x:Name="txt_ape1" Placeholder="Introduce tu primer apellido"/>
+        <Label Text="Segundo Apellido" TextColor="Black"/>
+        <Editor x:Name="txt_ape2" Placeholder="Introduce tu segundo apellido"/>
+        <Label Text="Teléfono" TextColor="Black"/>
+        <Editor x:Name="txt_tel" Placeholder="Introduce tu teléfono"/>
+        <Label Text="Introduce tu email" TextColor="Black"/>
+        <Editor x:Name="txt_email" Placeholder="Introduce tu email"/>
+        <Label Text="Introduce tu contraseña" TextColor="Black"/>
+        <Editor x:Name="txt_pass" Placeholder="Introduce tu contraseña"/>
+        <HorizontalStackLayout>
+            <Button Text="Regristrate" Clicked="Registrarse"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
