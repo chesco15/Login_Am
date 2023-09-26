@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cmp="clr-namespace:Microsoft.Maui.Controls.Compatibility;assembly=Microsoft.Maui.Controls"
+             xmlns:local="clr-namespace:Login_AM"
+             x:Class="Login_AM.Pages.MainPage">
+    <!--BackgroundColor="{DynamicResource PageBackgroundColor}"-->
+    <ContentPage.Content>
+        <VerticalStackLayout>
+            <Label Text="Introduce tu email" Margin="5"/>
+            <Entry x:Name="txt_email" Placeholder="Introduce tu email" Margin="5"/>
+            <Label Text="Introduce tu contraseña" Margin="5" />
+            <cmp:RelativeLayout Margin="5">
+                <Entry x:Name="txt_pass"  Placeholder="Introduce tu contraseña"
+                   cmp:RelativeLayout.XConstraint="{cmp:ConstraintExpression Type=RelativeToParent, Property=X, Constant=0}"
+                   cmp:RelativeLayout.WidthConstraint="{cmp:ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.9}"
+                   cmp:RelativeLayout.HeightConstraint="{cmp:ConstraintExpression Type=Constant, Constant= 50}"/>
+                <ImageButton BackgroundColor="Transparent"
+                         Source="eyeon.png" Clicked="ImageButton_Clicked"
+                   cmp:RelativeLayout.XConstraint="{cmp:ConstraintExpression Type=RelativeToParent, Property=Width, Constant=-50}"
+                   cmp:RelativeLayout.WidthConstraint="{cmp:ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.10}"
+                   cmp:RelativeLayout.HeightConstraint="{cmp:ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.10}" />
+            </cmp:RelativeLayout>
+            <HorizontalStackLayout>
+                <Button Text="Iniciar Sesión" Clicked="Loguearse"/>
+            </HorizontalStackLayout>
+            <cmp:RelativeLayout Margin="15">
+                <Label cmp:RelativeLayout.XConstraint="{cmp:ConstraintExpression Type=RelativeToParent, Property=Width, Constant=-50}"
+                   cmp:RelativeLayout.WidthConstraint="{cmp:ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                   cmp:RelativeLayout.HeightConstraint="{cmp:ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.10}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Crear una cuenta"
+                                  TextColor="Blue"
+                                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer
+                           Tapped="TapGestureRecognizer_Tapped_1"/>
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </cmp:RelativeLayout>
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

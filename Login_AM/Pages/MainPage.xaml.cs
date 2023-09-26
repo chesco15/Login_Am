@@ -4,21 +4,23 @@ using Login_AM.Pages;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
+using System.Windows.Input;
 
-namespace Login_AM;
+namespace Login_AM.Pages;
 
 public partial class MainPage : ContentPage
 {
     private readonly HttpClient _httpClient = new HttpClient();
-    
     public MainPage()
 	{
 		InitializeComponent();
+        BindingContext = this;
+        txt_pass.IsPassword = true;
     }
     private async void Loguearse(object sender, EventArgs e)
     {
-        Editor txt_email = (Editor)FindByName("txt_email");
-        Editor txt_pass = (Editor)FindByName("txt_pass");
+        Entry txt_email = (Entry)FindByName("txt_email");
+        Entry txt_pass = (Entry)FindByName("txt_pass");
         await Login_User(txt_email.Text, txt_pass.Text);
     }
     public async Task Login_User(string username, string password)
@@ -59,8 +61,27 @@ public partial class MainPage : ContentPage
             throw new Exception($"Error al realizar la solicitud: {response.StatusCode}");
         }
     }
+    private void ImageButton_Clicked(object sender, EventArgs e)
+    {
+        var imageButton = sender as ImageButton;
+        if (txt_pass.IsPassword)
+        {
+            imageButton.Source = ImageSource.FromFile("eyeoff.png");
+            txt_pass.IsPassword = false;
+        }
+        else
+        {
+            imageButton.Source = ImageSource.FromFile("eyeon.png");
+            txt_pass.IsPassword = true;
+        }
+    }
 
-    private async void Registro(object sender, EventArgs e)
+    private async void Registro()
+    {
+        await Navigation.PushAsync(new RegistroPage());
+    }
+
+    private async void TapGestureRecognizer_Tapped_1(object sender, TappedEventArgs e)
     {
         await Navigation.PushAsync(new RegistroPage());
     }
