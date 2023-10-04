@@ -26,4 +26,10 @@ public partial class InicioPage : ContentPage
 
         await Navigation.PushAsync(new DetalleMonumentoPage("monumento4.png", "Monumento 4"));
     }
+
+    private async void Profile(object sender, EventArgs e)
+    {
+
+        await Navigation.PushAsync(new ProfilePage());
+    }
 }
